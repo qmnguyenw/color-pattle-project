@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 <style>
   body {
     font-family: "Roboto", sans-serif;
@@ -51,8 +52,35 @@
         </div>
       </div>
       {% endfor %}
+      <main>
+        <div class="wrap">
+          <div class="body">
+            <div id="color_picker"></div>
+            <p class="sample">
+              <i class="sample__color"></i>
+              <em class="sample__code"></em>
+              <br>
+              <button onclick="updatePattle()">Save</button>
+            </p>
+          </div>
+          <nav class="controller">
+            <label>
+              <span>Type: </span>
+              <select onchange="onChangeType(this)">
+                <option value="default" selected>default</option>
+                <option value="circle">circle</option>
+                <option value="mini">mini</option>
+                <option value="ring">ring</option>
+                <option value="none">none</option>
+              </select>
+            </label>
+          </nav>
+        </div>
+      </main>
     </div>
     {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
   </div>
 </div>
+{% load static %}
+<script src="{% static 'js/lib.js' %}"></script>
 {%endblock%}
