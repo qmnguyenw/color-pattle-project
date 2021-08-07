@@ -4,6 +4,8 @@ from .models import Color
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.template import RequestContext
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 from django.contrib.auth.models import User
 
@@ -24,4 +26,11 @@ class ColorList(generic.ListView):
         else:
             return Color.objects.filter(author=self.request.user)
 
+@csrf_protect
+def sendPattle(request):
+    pass
+#     if request.method == 'POST':
+#         output = request.POST['updatePattle']
+#         # return render(request, "demo.html")
+#         return render('demo.html', {'form': c['updatePattle']},  RequestContext(request))
 

@@ -52,6 +52,7 @@
         </div>
       </div>
       {% endfor %}
+
       <main>
         <div class="wrap">
           <div class="body">
@@ -60,7 +61,10 @@
               <i class="sample__color"></i>
               <em class="sample__code"></em>
               <br>
-              <button onclick="updatePattle()">Save</button>
+              <form action="updatePattle" method="post">
+                {% csrf_token %} 
+                <button name="updatePattle" onclick="updatePattle()">Save</button>
+              </form>
             </p>
           </div>
           <nav class="controller">

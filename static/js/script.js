@@ -23,10 +23,32 @@ function updateColor(value) {
 }
 
 function updatePattle() {
-  defaults.swatchColors.unshift(color);
-  defaults.swatchColors.pop(-1);
-  picker.destroy();
-  picker = new EasyLogicColorPicker(Object.assign(defaults));
+  if(defaults.swatchColors.indexOf(color)<0){
+    defaults.swatchColors.unshift(color);
+    defaults.swatchColors.pop(-1);
+    picker.destroy();
+    picker = new EasyLogicColorPicker(Object.assign(defaults));
+    return defaults.swatchColors;
+  }
+}
+
+function deleteSelectedColor() {
+  console.log(color);
+  if(defaults.swatchColors.indexOf(color)>0){
+    removeElementOfArray(defaults.swatchColors, color);
+    picker.destroy();
+    picker = new EasyLogicColorPicker(Object.assign(defaults));
+  }
+}
+
+function removeElementOfArray(arr, valueRemove){
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i] === valueRemove){
+      arr.splice(i, 1); 
+      i--; 
+    }
+  }
+  return arr;
 }
 
 function onChangeType(e) {
